@@ -1,5 +1,5 @@
 # AlexBot
-Discord Bot with a very small functional(for now(kek))
+Discord Bot written withe the use of DiscordGo
 
 Available commands: 
                    
