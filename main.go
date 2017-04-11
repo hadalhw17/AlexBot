@@ -12,6 +12,7 @@ import (
 func init() {
 	flag.StringVar(&token, "t", "", "Bot Token")
 	flag.Parse()
+	dontDie()
 }
 
 const ANNOUNCEID  = "238048572413575168"
@@ -110,4 +111,13 @@ func guildCreate(s *discordgo.Session, event *discordgo.GuildCreate) {
 func newMember(s *discordgo.Session, event *discordgo.GuildMemberAdd){
 	s.ChannelMessageSend(ANNOUNCEID, "New member joined. Welcome @" + event.Member.User.Username)
 
+}
+
+func dontDie(){
+	ticker:=time.NewTicker(time.Minute * 59)
+	go func(){
+		for range ticker.C {
+			fmt.Println("...")
+		}
+	}()
 }
