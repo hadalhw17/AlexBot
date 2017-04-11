@@ -7,7 +7,6 @@ import (
 
 	"github.com/bwmarrin/discordgo"
 	"github.com/hadalhw17/AlexBot/commands"
-
 )
 
 func init() {
@@ -15,6 +14,7 @@ func init() {
 	flag.Parse()
 }
 
+const ANNOUNCEID  = "238048572413575168"
 var token string
 
 func main() {
@@ -42,7 +42,7 @@ func main() {
 
 	//Register newMember as a callback for the GuildMemberAdd
 	dg.AddHandler(newMember)
-
+	//
 	// Open the websocket and begin listening.
 	err = dg.Open()
 	if err != nil {
@@ -56,9 +56,9 @@ func main() {
 	go func(){
 		for range ticker.C {
 			if num!= 0 {
-				dg.ChannelMessageSend("238048572413575168", "@everyone you have a lot of courseworks to do!"+"\n"+msg)
+				dg.ChannelMessageSend(ANNOUNCEID, "@everyone you have a lot of courseworks to do!"+"\n"+msg)
 			}else {
-				dg.ChannelMessageSend("238048572413575168", " no courseworks!! You are free!")
+				dg.ChannelMessageSend(ANNOUNCEID, " no courseworks!! You are free!")
 			}
 		}
 
@@ -108,6 +108,6 @@ func guildCreate(s *discordgo.Session, event *discordgo.GuildCreate) {
 // This function will be called (due to AddHandler above) every time a new
 // member is joined.+
 func newMember(s *discordgo.Session, event *discordgo.GuildMemberAdd){
-	s.ChannelMessageSend("238048572413575168", "New member joined. Welcome @" + event.Member.User.Username)
+	s.ChannelMessageSend(ANNOUNCEID, "New member joined. Welcome @" + event.Member.User.Username)
 
 }
