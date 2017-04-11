@@ -19,7 +19,7 @@ var token string
 
 func main() {
 	if token == "" {
-		fmt.Println("No token provided. Please run: airhorn -t <bot token>")
+		fmt.Println("No token provided. Please run: AlexBot -t <bot token>")
 		return
 	}
 
@@ -99,7 +99,7 @@ func guildCreate(s *discordgo.Session, event *discordgo.GuildCreate) {
 
 	for _, channel := range event.Guild.Channels {
 		if channel.ID == event.Guild.ID {
-			//_, _ = s.ChannelMessageSend(channel.ID, "Kawaii is ready! Type !info to get some usefull shit about me.")
+		/_, _ = s.ChannelMessageSend(channel.ID, "AlexBot is ready! Type !help to get some usefull shit about me.")
 			return
 		}
 	}
