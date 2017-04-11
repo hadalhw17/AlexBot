@@ -1,7 +1,7 @@
 # AlexBot
 Discord Bot written withe the use of DiscordGo
 
-Available commands: 
+###Available commands: 
                    
                     !info   Tells about this bot
                     
