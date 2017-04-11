@@ -64,7 +64,7 @@ func main() {
 		}
 
 	}()
-	ticker1:=time.NewTicker(time.Minute * 20)
+	ticker1:=time.NewTicker(time.Minute * 10)
 	go func(){
 		for range ticker1.C {
 			fmt.Println("...")
