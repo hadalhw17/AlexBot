@@ -64,6 +64,12 @@ func main() {
 		}
 
 	}()
+	ticker1:=time.NewTicker(time.Minute * 20)
+	go func(){
+		for range ticker1.C {
+			fmt.Println("...")
+		}
+	}()
 	fmt.Print("Bot is running.... Thanks god!!")
 	// Simple way to keep program running until CTRL-C is pressed.
 	<-make(chan struct{})
