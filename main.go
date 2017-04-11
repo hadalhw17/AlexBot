@@ -114,7 +114,7 @@ func newMember(s *discordgo.Session, event *discordgo.GuildMemberAdd){
 }
 
 func dontDie(){
-	ticker:=time.NewTicker(time.Minute * 59)
+	ticker:=time.NewTicker(time.Minute * 20)
 	go func(){
 		for range ticker.C {
 			fmt.Println("...")
