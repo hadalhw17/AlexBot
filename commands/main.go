@@ -160,9 +160,17 @@ func pinLastMessage(m *discordgo.MessageCreate, s *discordgo.Session){
 
 func getMemes(text string) (resp string){
 	id := strings.Fields(strings.TrimSpace(text))
-	id[1] = strings.Replace(id[1],"_", "-",1)
-	id[2] = strings.Replace(id[2],"_", "-",1)
-	resp = "https://memegen.link/"+id[1]+"/"+id[2]+"/"+id[3]+".jpg"
+	if len(text)<6{
+		resp = "To generate a meme, you need to type `!meme <name> <top_text> <bot_text>"
+	}else{
+		if len(id)<4 {
+			return "Look !help meme to get help or just call ambulance and tell that you are mentally ill"
+		}
+		id[1] = strings.Replace(id[1],"_", "-",1)
+		id[2] = strings.Replace(id[2],"_", "-",1)
+		resp = "https://memegen.link/"+id[1]+"/"+id[2]+"/"+id[3]+".jpg"
+	}
+
 	return resp
 }
 
