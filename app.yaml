@@ -2,4 +2,4 @@ api_version: go1
 env: flex
 runtime: go
 manual_scaling:
-  instances: 5
+  instances: 1
