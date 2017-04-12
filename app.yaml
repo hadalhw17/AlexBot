@@ -1,6 +1,5 @@
 api_version: go1
 env: flex
 runtime: go
-automatic_scaling:
-  min_num_instances: 1
-  max_num_instances: 1
+manual_scaling:
+  instances: 5
