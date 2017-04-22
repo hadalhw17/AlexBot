@@ -15,7 +15,8 @@ func init() {
 	dontDie()
 }
 
-const ANNOUNCEID  = "238048572413575168"
+const ANNOUNCEID = "238048572413575168"
+
 var token string
 
 func main() {
@@ -49,23 +50,23 @@ func main() {
 	if err != nil {
 		fmt.Println("Error opening Discord session: ", err)
 	}
-	//Every 12 hours it will remind about courseworks
-	ticker:=time.NewTicker(time.Hour * 12)
+	//Every 7 days, the bot will send a reminder about our pending coursework.
+	ticker := time.NewTicker(time.Day * 7)
 	var msg string
 	var num int
-	msg,num = commands.ReadCal("courseworks.ics")
-	go func(){
+	msg, num = commands.ReadCal("courseworks.ics")
+	go func() {
 		for range ticker.C {
-			if num!= 0 {
-				dg.ChannelMessageSend(ANNOUNCEID, "@everyone you have a lot of courseworks to do!"+"\n"+msg)
-			}else {
+			if num != 0 {
+				dg.ChannelMessageSend(ANNOUNCEID, "you have a lot of courseworks to do!"+"\n"+msg)
+			} else {
 				dg.ChannelMessageSend(ANNOUNCEID, " no courseworks!! You are free!")
 			}
 		}
 
 	}()
-	ticker1:=time.NewTicker(time.Minute * 10)
-	go func(){
+	ticker1 := time.NewTicker(time.Minute * 10)
+	go func() {
 		for range ticker1.C {
 			fmt.Println("...")
 		}
@@ -90,8 +91,8 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	reply, isExist:= commands.ParceForCommands(s,m)
-	if isExist{
+	reply, isExist := commands.ParceForCommands(s, m)
+	if isExist {
 		s.ChannelMessageSend(m.ChannelID, reply)
 	}
 	return
@@ -106,7 +107,7 @@ func guildCreate(s *discordgo.Session, event *discordgo.GuildCreate) {
 
 	for _, channel := range event.Guild.Channels {
 		if channel.ID == event.Guild.ID {
-		_, _ = s.ChannelMessageSend(ANNOUNCEID, "AlexBot is ready! Type !help to get some usefull shit about me.")
+			_, _ = s.ChannelMessageSend(ANNOUNCEID, "AlexBot is ready! Type !help to get some usefull shit about me.")
 			return
 		}
 	}
@@ -114,14 +115,14 @@ func guildCreate(s *discordgo.Session, event *discordgo.GuildCreate) {
 
 // This function will be called (due to AddHandler above) every time a new
 // member is joined.+
-func newMember(s *discordgo.Session, event *discordgo.GuildMemberAdd){
-	s.ChannelMessageSend(ANNOUNCEID, "New member joined. Welcome @" + event.Member.User.Username)
+func newMember(s *discordgo.Session, event *discordgo.GuildMemberAdd) {
+	s.ChannelMessageSend(ANNOUNCEID, "New member joined. Welcome @"+event.Member.User.Username)
 
 }
 
-func dontDie(){
-	ticker:=time.NewTicker(time.Minute * 20)
-	go func(){
+func dontDie() {
+	ticker := time.NewTicker(time.Minute * 20)
+	go func() {
 		for range ticker.C {
 			fmt.Println("...")
 		}
