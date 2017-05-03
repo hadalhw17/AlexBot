@@ -51,7 +51,7 @@ func main() {
 		fmt.Println("Error opening Discord session: ", err)
 	}
 	//Every 7 days, the bot will send a reminder about our pending coursework.
-	ticker := time.NewTicker(time.Day * 7)
+	ticker := time.NewTicker(time.Hour * 168)
 	var msg string
 	var num int
 	msg, num = commands.ReadCal("courseworks.ics")
